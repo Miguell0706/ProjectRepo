@@ -1,14 +1,12 @@
 import { Routes, Route } from "react-router-dom";
-import CreatePage from "./pages/CreatePage";
+import GrowthPage from "./pages/GrowthPage";
 import HomePage from "./pages/HomePage";
-import Navbar from "./components/newcomponents/Navbar";
 function App() {
   return (
     <>
-      <Navbar />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/create" element={<CreatePage />} />
+        <Route path="/" element={<GrowthPage />} />
+        <Route path="/create" element={<GrowthPage />} />
       </Routes>
     </>
   );

@@ -1,0 +1,79 @@
+.page-container {
+  display: flex;
+  flex-direction: row;
+  font-family: Poppins, Geneva, Tahoma, sans-serif;
+}
+.giraffe-measurements-container {
+  width: 70%;
+  border: 2px solid red;
+}
+.measurements-sidebar {
+  width: 30%;
+  border: 2px solid blue;
+  height: 100%;
+  position: fixed;
+  min-width: 170px;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 2%;
+}
+.measurements-sidebar h2 {
+  margin-block: 10px;
+  font-size: 18px;
+  font-weight: 500;
+  opacity: 0.5;
+  text-shadow: 0px 0.5px 0px rgb(0, 0, 0);
+}
+.measurements-sidebar input {
+  width: 80%;
+  margin-block: 5px;
+  height: 50px;
+  border-radius: 5px;
+  border: 2px solid rgb(114, 123, 133, 0.75);
+  padding: 10px 13px;
+  font-size: 16px;
+}
+.measurements-sidebar input::placeholder {
+  font-size: 16px;
+  opacity: 0.4;
+  text-shadow: 0px 0.5px 0px rgb(0, 0, 0);
+}
+.measurements-sidebar button {
+  width: 80%;
+  margin-block: 5px;
+  height: 50px;
+  border-radius: 5px;
+  color: rgb(239, 239, 239);
+  background-color: rgb(97, 206, 112);
+  border: none;
+  padding: 10px 13px;
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.measurements-sidebar button:hover {
+  cursor: pointer;
+  background-color: rgb(97, 206, 112, 0.7);
+}
+.measurements-sidebar button:active {
+  background-color: rgb(97, 206, 112, 0.9);
+}
+
+.giraffe {
+  margin-top: 50px;
+  margin-left: 10%;
+}
+.custom-file-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+  margin-bottom: 15px;
+}

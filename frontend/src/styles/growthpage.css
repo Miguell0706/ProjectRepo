@@ -1,6 +1,6 @@
 .page-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   font-family: Poppins, Geneva, Tahoma, sans-serif;
 }
 .giraffe-measurements-container {
@@ -64,7 +64,7 @@
 .giraffe {
   margin-top: 50px;
   margin-left: 20%;
-  height: 800px;
+  height: 700px;
   width: 200px;
 }
 .custom-file-input {
@@ -88,7 +88,50 @@
   opacity: 0.7;
   text-shadow: 0px 0.5px 0px rgb(0, 0, 0);
 }
+/* -----------------MeasurementsList.css----------------- */
 
+.measurements-table {
+  width: 27%;
+  min-width: 215px;
+
+  border-collapse: collapse;
+  margin: 3% 5%;
+  font-family: Arial, sans-serif;
+}
+
+.measurements-table th {
+  background-color: #f4d03f;
+  border: 1.5px solid black;
+  width: 33%;
+  font-weight: normal;
+  font-size: 16px;
+  text-align: left;
+  padding-block: 3px;
+  padding-inline: 2px;
+}
+
+.measurements-table td {
+  border: 1.5px solid black;
+  padding-block: 4px;
+  padding-inline: 2px;
+}
+
+.even-row {
+  background-color: #f8f9f9;
+}
+
+.odd-row {
+  background-color: #eaeded;
+}
+.edit-button {
+  background-color: transparent;
+  color: blue;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  text-decoration: underline;
+}
+/*---------------------------------------------------------*/
 @media screen and (max-width: 650px) {
   .measurements-sidebar h2 {
     font-size: 14px;

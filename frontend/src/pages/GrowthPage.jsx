@@ -1,5 +1,6 @@
 import React from "react";
 import MeasurementsSidebar from "../components/newcomponents/MeasurementsSidebar";
+import MeasurementsList from "../components/newcomponents/MeasurementsList";
 import giraffe from "../assets/Giraffe.jpg"; // Adjust path if needed
 import "../styles/growthpage.css";
 const GrowthPage = () => {
@@ -12,6 +13,7 @@ const GrowthPage = () => {
       </div>
 
       <MeasurementsSidebar />
+      <MeasurementsList />
     </div>
   );
 };

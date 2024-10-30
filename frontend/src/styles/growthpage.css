@@ -5,11 +5,9 @@
 }
 .giraffe-measurements-container {
   width: 70%;
-  border: 2px solid red;
 }
 .measurements-sidebar {
   width: 25%;
-  border: 2px solid blue;
   height: 100%;
   position: fixed;
   min-width: 100px;

@@ -21,11 +21,16 @@ const MeasurementsSidebar = ({ fetchPhotos }) => {
   };
 
   const validateDate = () => {
-    const datePattern = /^(0[1-9]|[12]\d|3[01])-(0[1-9]|1[0-2])-\d{4}$/;
+    console.log(date);
+    // U.S. MM/DD/YYYY format validation|1
+    const datePattern = /^(0[1-9]|1[0-2])[-\/](0[1-9]|[12]\d|3[01])[-\/]\d{4}$/;
+
     if (!datePattern.test(date)) {
-      alert("Please enter a valid date in DD-MM-YYYY format");
+      console.log("Invalid date format");
+      alert("Please enter a valid date in MM/DD/YYYY format");
       return false;
     }
+
     return true;
   };
   const handleHeightChange = (e) => {
@@ -79,7 +84,7 @@ const MeasurementsSidebar = ({ fetchPhotos }) => {
       <h2>Date of measurement</h2>
       <input
         type="text"
-        placeholder="DD/MM/YYYY"
+        placeholder="MM/DD/YYYY"
         value={date}
         onChange={handleDateChange}
         maxLength={10}

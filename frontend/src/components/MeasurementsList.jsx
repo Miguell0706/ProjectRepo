@@ -83,13 +83,11 @@ const MeasurementsList = ({ measurements, onUpdateMeasurement }) => {
       if (!response.ok) {
         throw new Error("Failed to delete photo");
       }
-
-      const data = await response.json();
       alert("Photo deleted successfully");
 
       // Remove the deleted photo from the measurements array
       const updatedMeasurementsArray = formattedMeasurements.filter(
-        (measurement, i) => i !== index
+        (i) => i !== index
       );
       setFormattedMeasurements(updatedMeasurementsArray);
     } catch (error) {

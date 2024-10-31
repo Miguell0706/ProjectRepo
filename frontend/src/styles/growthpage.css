@@ -86,12 +86,10 @@
   opacity: 0.7;
   text-shadow: 0px 0.5px 0px rgb(0, 0, 0);
 }
-/* -----------------MeasurementsList.css----------------- */
+/* -======================MeasurementsList.css==================== */
 
 .measurements-table {
-  width: 27%;
-  min-width: 215px;
-
+  width: 450px;
   border-collapse: collapse;
   margin: 3% 5%;
   font-family: Arial, sans-serif;
@@ -104,14 +102,15 @@
   font-weight: normal;
   font-size: 16px;
   text-align: left;
-  padding-block: 3px;
-  padding-inline: 2px;
+  padding-inline: 3px;
+  padding-block: 5px;
 }
 
 .measurements-table td {
   border: 1.5px solid black;
   padding-block: 4px;
   padding-inline: 2px;
+  font-size: 16px;
 }
 
 .even-row {
@@ -137,7 +136,16 @@
   font-size: 16px;
   background-color: transparent;
 }
-/*---------------------------------------------------------*/
+.delete-button {
+  background-color: transparent;
+  color: red;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  text-decoration: underline;
+  padding: 0px 5px;
+}
+/*--------------------------------------------------------===============-*/
 @media screen and (max-width: 650px) {
   .measurements-sidebar h2 {
     font-size: 14px;
@@ -158,6 +166,29 @@
   }
   .giraffe {
     margin-left: 15px;
+  }
+  .measurements-table {
+    width: 340px;
+    border-collapse: collapse;
+    margin: 2% 4%;
+    font-family: Arial, sans-serif;
+  }
+
+  .measurements-table th {
+    font-size: 14px;
+  }
+  .measurements-table td {
+    font-size: 14px;
+  }
+
+  .edit-input {
+    width: 90px;
+    height: 21px;
+    font-size: 14px;
+  }
+  .edit-button,
+  .delete-button {
+    font-size: 14px;
   }
 }
 @media screen and (max-width: 500px) {
@@ -188,5 +219,27 @@
     margin-top: 20%;
     width: 130px;
     height: 600px;
+  }
+  .measurements-table {
+    width: 220px;
+    border-collapse: collapse;
+    margin: 1% 3%;
+    font-family: Arial, sans-serif;
+  }
+
+  .measurements-table th {
+    font-size: 12px;
+  }
+  .measurements-table td {
+    font-size: 12px;
+  }
+  .edit-input {
+    width: 64px;
+    height: 18px;
+    font-size: 12px;
+  }
+  .edit-button,
+  .delete-button {
+    font-size: 12px;
   }
 }

@@ -1,3 +1,4 @@
+import { set } from "mongoose";
 import React, { useEffect, useState } from "react";
 
 // Helper function to format dates as 'dd-mm-yyyy'
@@ -71,7 +72,32 @@ const MeasurementsList = ({ measurements, onUpdateMeasurement }) => {
 
     setEditIndex(null); // Exit edit mode
   };
+  const deletePhoto = async (id, index) => {
+    try {
+      const response = await fetch(`api/photos/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
+      if (!response.ok) {
+        throw new Error("Failed to delete photo");
+      }
+
+      const data = await response.json();
+      console.log("Photo deleted successfully:", data);
+      alert("Photo deleted successfully");
+
+      // Remove the deleted photo from the measurements array
+      const updatedMeasurementsArray = formattedMeasurements.filter(
+        (measurement, i) => i !== index
+      );
+      setFormattedMeasurements(updatedMeasurementsArray);
+    } catch (error) {
+      console.error("Error deleting photo:", error);
+    }
+  };
   const handleCancel = () => {
     setEditIndex(null);
   };
@@ -134,12 +160,20 @@ const MeasurementsList = ({ measurements, onUpdateMeasurement }) => {
                   </button>
                 </>
               ) : (
-                <button
-                  className="edit-button"
-                  onClick={() => handleEdit(index)}
-                >
-                  Edit
-                </button>
+                <>
+                  <button
+                    className="edit-button"
+                    onClick={() => handleEdit(index)}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="delete-button"
+                    onClick={() => deletePhoto(measurement._id, index)}
+                  >
+                    Delete
+                  </button>
+                </>
               )}
             </td>
           </tr>

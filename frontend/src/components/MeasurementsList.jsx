@@ -55,7 +55,6 @@ const MeasurementsList = ({ measurements, onUpdateMeasurement }) => {
   };
 
   const handleSave = (index) => {
-    console.log(index);
     const updatedMeasurement = {
       ...formattedMeasurements[index],
       ...editValues,
@@ -86,7 +85,6 @@ const MeasurementsList = ({ measurements, onUpdateMeasurement }) => {
       }
 
       const data = await response.json();
-      console.log("Photo deleted successfully:", data);
       alert("Photo deleted successfully");
 
       // Remove the deleted photo from the measurements array

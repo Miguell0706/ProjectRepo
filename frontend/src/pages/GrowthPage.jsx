@@ -18,10 +18,6 @@ const GrowthPage = () => {
       console.error("Error fetching photos:", error);
     }
   };
-  const addPhoto = (newPhoto) => {
-    setMeasurements((prev) => [...prev, newPhoto]); // Update state with the new photo
-  };
-
   const onUpdateMeasurement = async (updatedMeasurement) => {
     try {
       const response = await fetch(`/api/photos/${updatedMeasurement._id}`, {
@@ -54,7 +50,7 @@ const GrowthPage = () => {
         </div>
       </div>
 
-      <MeasurementsSidebar addPhoto={addPhoto} />
+      <MeasurementsSidebar fetchPhotos={fetchPhotos} />
       <MeasurementsList
         measurements={measurements}
         onUpdateMeasurement={onUpdateMeasurement}

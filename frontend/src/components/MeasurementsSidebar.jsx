@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import axios from "axios";
 
-const MeasurementsSidebar = () => {
+const MeasurementsSidebar = ({ fetchPhotos }) => {
   const [date, setDate] = useState("");
   const [height, setHeight] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
@@ -60,6 +60,7 @@ const MeasurementsSidebar = () => {
       const response = await axios.post("/api/photos", formData);
       alert("Photo added successfully!");
       console.log(response.data);
+      fetchPhotos();
     } catch (error) {
       console.error("Error uploading photo:", error);
       alert("Failed to upload photo");

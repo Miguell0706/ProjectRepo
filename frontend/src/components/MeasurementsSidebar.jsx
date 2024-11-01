@@ -1,7 +1,5 @@
 import React, { useState, useRef } from "react";
 import axios from "axios";
-import { set } from "mongoose";
-import { parse } from "dotenv";
 
 const MeasurementsSidebar = ({ fetchPhotos }) => {
   const [date, setDate] = useState("");
@@ -23,7 +21,6 @@ const MeasurementsSidebar = ({ fetchPhotos }) => {
   };
 
   const validateDate = () => {
-    console.log(date);
     // U.S. MM/DD/YYYY format validation|1
     const datePattern = /^(0[1-9]|1[0-2])[-\/](0[1-9]|[12]\d|3[01])[-\/]\d{4}$/;
 
@@ -61,8 +58,8 @@ const MeasurementsSidebar = ({ fetchPhotos }) => {
       return;
     }
     let intHeight = parseInt(height);
-    if (intHeight < 30 || intHeight > 140) {
-      alert("Height must be between 30 and 140 cm");
+    if (intHeight < 50 || intHeight > 140) {
+      alert("Height must be between 50 and 140 cm");
       return;
     }
     setHeight(intHeight);
@@ -97,7 +94,7 @@ const MeasurementsSidebar = ({ fetchPhotos }) => {
       <h2>Date of measurement</h2>
       <input
         type="text"
-        placeholder="MM/DD/YYYY"
+        placeholder="Date"
         value={date}
         onChange={handleDateChange}
         maxLength={10}

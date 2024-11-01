@@ -19,6 +19,7 @@ const GrowthPage = () => {
     }
   };
   const onUpdateMeasurement = async (updatedMeasurement) => {
+    console.log("Updating measurement:", updatedMeasurement);
     try {
       const response = await fetch(`/api/photos/${updatedMeasurement._id}`, {
         method: "PUT",

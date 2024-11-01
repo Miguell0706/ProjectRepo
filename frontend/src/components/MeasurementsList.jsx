@@ -1,11 +1,10 @@
-import { set } from "mongoose";
 import React, { useEffect, useState } from "react";
 
 // Helper function to format dates as 'dd-mm-yyyy'
 const formatDate = (dateString) => {
   const date = new Date(dateString);
-  const day = String(date.getDate()).padStart(2, "0");
-  const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed
+  const month = String(date.getDate()).padStart(2, "0");
+  const day = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed
   const year = date.getFullYear();
   return `${day}-${month}-${year}`;
 };
@@ -45,20 +44,47 @@ const MeasurementsList = ({ measurements, onUpdateMeasurement }) => {
     setEditValues((prev) => ({ ...prev, date: input.slice(0, 10) })); // Limit to 10 characters
   };
 
-  const handleHeightChange = (e) => {
-    const input = e.target.value;
+  const validateDate = (date) => {
+    // U.S. MM/DD/YYYY format validation
+    const datePattern = /^(0[1-9]|1[0-2])[-\/](0[1-9]|[12]\d|3[01])[-\/]\d{4}$/;
 
-    // Only allow numbers within the range of 30-140
-    if (input === "" || (input >= 30 && input <= 140)) {
-      setEditValues((prev) => ({ ...prev, height: input }));
+    if (!datePattern.test(date)) {
+      console.log("Invalid date format");
+      alert("Please enter a valid date in MM/DD/YYYY format");
+      return false;
     }
+
+    return true;
   };
 
+  const handleHeightChange = (e) => {
+    const input = e.target.value;
+    // Allow empty string or an integer
+    if (!/^$|^\d+$/.test(input)) {
+      return;
+    }
+    setEditValues((prev) => ({ ...prev, height: input }));
+  };
   const handleSave = (index) => {
+    const updatedHeight = parseInt(editValues.height, 10);
+
+    // Check if height is a valid number and within the range
+    if (isNaN(updatedHeight) || updatedHeight < 30 || updatedHeight > 140) {
+      alert("Please enter a height between 30 and 140 cm.");
+      return;
+    }
+
+    // Validate date
+    if (!validateDate(editValues.date)) {
+      return;
+    }
+
     const updatedMeasurement = {
       ...formattedMeasurements[index],
-      ...editValues,
+      height: updatedHeight,
+      date: editValues.date,
     };
+
     onUpdateMeasurement(updatedMeasurement);
 
     // Replace the specific measurement in the array with the updated one
@@ -66,9 +92,7 @@ const MeasurementsList = ({ measurements, onUpdateMeasurement }) => {
       (measurement, i) => (i === index ? updatedMeasurement : measurement)
     );
 
-    // Assuming there's a function to update formattedMeasurements state in the parent component
     setFormattedMeasurements(updatedMeasurementsArray);
-
     setEditIndex(null); // Exit edit mode
   };
   const deletePhoto = async (id, index) => {
@@ -129,10 +153,7 @@ const MeasurementsList = ({ measurements, onUpdateMeasurement }) => {
               {editIndex === index ? (
                 <input
                   className="edit-input"
-                  type="number"
-                  min="30"
-                  max="140"
-                  step="10"
+                  type="text"
                   name="height"
                   value={editValues.height}
                   onChange={handleHeightChange}

@@ -1,5 +1,7 @@
 import React, { useState, useRef } from "react";
 import axios from "axios";
+import { set } from "mongoose";
+import { parse } from "dotenv";
 
 const MeasurementsSidebar = ({ fetchPhotos }) => {
   const [date, setDate] = useState("");
@@ -36,11 +38,14 @@ const MeasurementsSidebar = ({ fetchPhotos }) => {
   const handleHeightChange = (e) => {
     const input = e.target.value;
 
-    // Only allow numbers within the range of 30-140
-    if (input === "" || (input >= 30 && input <= 140)) {
-      setHeight(input);
+    // Allow empty string or an integer
+    if (!/^$|^\d+$/.test(input)) {
+      return;
     }
+
+    setHeight(input);
   };
+
   const handleFileChange = (e) => {
     if (e.target.files && e.target.files[0]) {
       setSelectedFile(e.target.files[0]);
@@ -55,6 +60,14 @@ const MeasurementsSidebar = ({ fetchPhotos }) => {
     if (!validateDate()) {
       return;
     }
+    let intHeight = parseInt(height);
+    if (intHeight < 30 || intHeight > 140) {
+      alert("Height must be between 30 and 140 cm");
+      return;
+    }
+    setHeight(intHeight);
+    console.log(height);
+    console.log(date, height, selectedFile);
     const formData = new FormData();
     formData.append("image", selectedFile);
     formData.append("height", height);
@@ -92,12 +105,9 @@ const MeasurementsSidebar = ({ fetchPhotos }) => {
 
       <h2>Height (cm)</h2>
       <input
-        type="number"
+        type="text"
         onChange={handleHeightChange}
         placeholder="Height"
-        min="30"
-        max="140"
-        step="10"
         value={height}
         required
       />

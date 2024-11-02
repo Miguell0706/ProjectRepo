@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
 import MeasurementsSidebar from "../components/MeasurementsSidebar";
 import MeasurementsList from "../components/MeasurementsList";
-import giraffe from "../assets/Giraffe.jpg"; // Adjust path if needed
+import GiraffeContainer from "../components/GiraffeContainer";
 import "../styles/growthpage.css";
 const GrowthPage = () => {
-  const [measurements, setMeasurements] = useState([]); // Shared state for photos
+  const [measurements, setMeasurements] = useState([]);
   const fetchPhotos = async () => {
     try {
       const response = await fetch("/api/photos");
       const data = await response.json();
       if (data.success) {
         setMeasurements(data.data);
+        console.log(data.data);
       } else {
         console.error("Failed to fetch photos:", data.message);
       }
@@ -18,6 +19,7 @@ const GrowthPage = () => {
       console.error("Error fetching photos:", error);
     }
   };
+  //==========THIS CODE UPDATES THE PHOTO OBJECT IN THE BACKEND WHEN IT GETS CHANGED IN MEASUREMENTS LIST ===================//
   const onUpdateMeasurement = async (updatedMeasurement) => {
     console.log("Updating measurement:", updatedMeasurement);
     try {
@@ -46,9 +48,7 @@ const GrowthPage = () => {
   return (
     <div className="page-container">
       <div className="giraffe-measurements-container">
-        <div className="giraffe-container">
-          <img src={giraffe} className="giraffe" alt="Giraffe" />
-        </div>
+        <GiraffeContainer measurements={measurements} />
       </div>
 
       <MeasurementsSidebar fetchPhotos={fetchPhotos} />

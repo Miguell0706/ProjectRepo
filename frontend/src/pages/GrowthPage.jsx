@@ -11,7 +11,6 @@ const GrowthPage = () => {
       const data = await response.json();
       if (data.success) {
         setMeasurements(data.data);
-        console.log(data.data);
       } else {
         console.error("Failed to fetch photos:", data.message);
       }

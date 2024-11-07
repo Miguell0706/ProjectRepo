@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import giraffe from "../assets/Giraffe.jpg"; // Adjust path if needed
 
 const GiraffeContainer = ({ measurements }) => {
-  const [hoveredMeasurement, setHoveredMeasurement] = useState(null);
   const [displayedImages, setDisplayedImages] = useState([]);
 
-  const imageCache = useRef({
+  let imageCache = {
     14: [],
     13: [],
     12: [],
@@ -16,24 +15,20 @@ const GiraffeContainer = ({ measurements }) => {
     7: [],
     6: [],
     5: [],
-  });
-
+  };
   useEffect(() => {
     measurements.forEach((measurement) => {
       const height = parseInt(measurement.height);
       const key =
         height >= 100 ? Math.floor(height / 10) : Math.floor(height / 10);
-
-      if (imageCache.current[key] !== undefined) {
-        imageCache.current[key].push(measurement.image);
+      if (imageCache[key] !== undefined) {
+        imageCache[key].push(measurement.image);
       }
     });
-    console.log("Image Cache:", imageCache.current);
   });
-
   const handleMouseEnter = (measurement) => {
-    setHoveredMeasurement(measurement);
-    setDisplayedImages(imageCache.current[measurement] || []);
+    setDisplayedImages(imageCache[measurement]);
+    console.log(imageCache[measurement]);
   };
 
   return (
@@ -50,20 +45,20 @@ const GiraffeContainer = ({ measurements }) => {
               top: `${index * 5.7}%`, // Adjust for even spacing
             }}
             onMouseEnter={() => handleMouseEnter(measurement)}
-          >
-            {hoveredMeasurement && (
-              <div className="image-display">
-                {displayedImages.map((image, idx) => (
-                  <img
-                    key={idx}
-                    src={image}
-                    alt={`Height marker ${measurement}`}
-                  />
-                ))}
-              </div>
-            )}
-          </div>
+          />
         ))}
+        <div className="image-display">
+          {displayedImages.map((image, idx) => (
+            <img
+              key={idx}
+              src={`${import.meta.env.VITE_API_URL}/${image.replace(
+                /\\/g,
+                "/"
+              )}`}
+              alt={`Image ${idx}`}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

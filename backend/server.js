@@ -29,14 +29,17 @@ const storage = multer.diskStorage({
 const upload = multer({ storage }); // Configure multer with storage settings
 
 // API Routes
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+console.log("Serving static files from:", path.join(__dirname, "uploads"));
+
 app.use("/api/users", userRoutes);
 app.use("/api/photos", upload.single("image"), photoRoutes);
 
 // Serve frontend files in development or production
-app.use(express.static(path.join(__dirname, "frontend", "dist")));
+app.use(express.static(path.join(__dirname, "frontend/dist")));
 
 app.get("*", (req, res) =>
-  res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"))
+  res.sendFile(path.resolve(__dirname, "frontend/dist", "index.html"))
 );
 
 // Start the server and connect to MongoDB

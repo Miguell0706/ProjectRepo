@@ -3,6 +3,7 @@ import giraffe from "../assets/Giraffe.jpg"; // Adjust path if needed
 
 const GiraffeContainer = ({ measurements }) => {
   const [displayedImages, setDisplayedImages] = useState([]);
+  const [displayPosition, setDisplayPosition] = useState(0); // State to store top position
 
   let imageCache = {
     14: [],
@@ -26,9 +27,17 @@ const GiraffeContainer = ({ measurements }) => {
       }
     });
   });
-  const handleMouseEnter = (measurement) => {
+  const handleMouseEnter = (measurement, index) => {
     setDisplayedImages(imageCache[measurement]);
-    console.log(imageCache[measurement]);
+    setDisplayPosition(index * 7); // Set display position to match hover zone position
+    console.log("here");
+    setTimeout(() => {
+      const images = document.querySelectorAll(".image-display img");
+      images.forEach((img) => {
+        img.style.transition = "300ms ease-in-out";
+        img.style.transform = "scale(1)";
+      });
+    }, 10); // Slight delay to ensure images are rendered
   };
 
   return (
@@ -44,13 +53,19 @@ const GiraffeContainer = ({ measurements }) => {
             style={{
               top: `${index * 5.7}%`, // Adjust for even spacing
             }}
-            onMouseEnter={() => handleMouseEnter(measurement)}
+            onMouseEnter={() => handleMouseEnter(measurement, index)}
           />
         ))}
-        <div className="image-display">
+        <div
+          className="image-display"
+          style={{
+            top: `${displayPosition}%`, // Adjust for even spacing
+          }}
+        >
           {displayedImages.map((image, idx) => (
             <img
               key={idx}
+              className="pop-out"
               src={`${import.meta.env.VITE_API_URL}/${image.replace(
                 /\\/g,
                 "/"

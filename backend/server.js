@@ -30,7 +30,6 @@ const upload = multer({ storage }); // Configure multer with storage settings
 
 // API Routes
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-console.log("Serving static files from:", path.join(__dirname, "uploads"));
 
 app.use("/api/users", userRoutes);
 app.use("/api/photos", upload.single("image"), photoRoutes);

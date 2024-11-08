@@ -4,7 +4,7 @@
   font-family: Poppins, Geneva, Tahoma, sans-serif;
 }
 .giraffe-measurements-container {
-  width: 70%;
+  width: 75%;
 }
 /*========================== GIRAFFE AND IMAGES CONTAINER HERE=================*/
 .giraffe {
@@ -15,38 +15,44 @@
 }
 .giraffe-container {
   position: relative;
-  margin-left: 2%;
 }
 .image-wrapper {
   position: relative;
-  max-width: 500px; /* or any desired max width */
-  width: 100%; /* Responsive width */
 }
 
 .hover-zone {
   position: absolute;
-  left: 40%;
+  left: 30%;
   top: 0;
   width: 160px;
   margin-top: 148px;
   height: 10px;
-  border: 2px solid green;
 }
 .image-display {
   display: flex;
   flex-direction: row;
   position: absolute;
-  left: 55%;
-  justify-content: center;
+  left: max(35%, min(330px, 45%));
+  justify-content: left;
   align-items: center;
-  margin-top: 0px;
   flex-wrap: wrap;
-  width: auto;
-  border: 3px solid red;
+  width: 60%;
+  margin-left: 10px;
 }
+.image-display img {
+  margin: 5px;
+  width: 90px; /* Sets the width */
+  aspect-ratio: 8 / 7; /* Change to desired aspect ratio (e.g., 4 / 3, 5 / 3, etc.) */
+  border-radius: 20px;
+  transition: 300ms ease-in-out;
+  outline: 5px solid rgba(0, 0, 0, 0.4);
+  outline-offset: -5px;
+  transform: scale(0);
+}
+
 /*================SIDEBAR OF GROWTH PAGE===========================*/
 .measurements-sidebar {
-  width: 25%;
+  width: 20%;
   height: 100%;
   position: fixed;
   min-width: 100px;
@@ -54,7 +60,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 2%;
+  padding-top: 2%;
 }
 
 .measurements-sidebar h2 {
@@ -205,6 +211,14 @@
     width: 100px;
     left: 25%;
   }
+  .image-display {
+    margin-left: -10px;
+    margin-top: 10px;
+  }
+  .image-display img {
+    width: 62px;
+    border-radius: 15px;
+  }
   .measurements-table {
     width: 340px;
     border-collapse: collapse;
@@ -261,6 +275,13 @@
   }
   .giraffe-container {
     margin-left: 0px;
+  }
+  .image-display {
+    margin-top: 20px;
+  }
+  .image-display img {
+    width: 50px;
+    border-radius: 15px;
   }
   .hover-zone {
     width: 70px;

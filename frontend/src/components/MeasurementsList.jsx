@@ -9,7 +9,11 @@ const formatDate = (dateString) => {
   return `${day}-${month}-${year}`;
 };
 
-const MeasurementsList = ({ measurements, onUpdateMeasurement }) => {
+const MeasurementsList = ({
+  measurements,
+  onUpdateMeasurement,
+  fetchPhotos,
+}) => {
   const [formattedMeasurements, setFormattedMeasurements] = useState([]);
   const [editIndex, setEditIndex] = useState(null); // Track which row is being edited
   const [editValues, setEditValues] = useState({ height: "", date: "" });
@@ -113,10 +117,12 @@ const MeasurementsList = ({ measurements, onUpdateMeasurement }) => {
         (_, i) => i !== index
       );
       setFormattedMeasurements(updatedMeasurementsArray);
+      fetchPhotos();
     } catch (error) {
       console.error("Error deleting photo:", error);
     }
   };
+
   const handleCancel = () => {
     setEditIndex(null);
   };

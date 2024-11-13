@@ -59,7 +59,7 @@ const GiraffeContainer = ({ measurements }) => {
         <div
           className="image-display"
           style={{
-            top: `${displayPosition}%`, // Adjust for even spacing
+            top: `calc(${displayPosition + 4}% + 10px)`, // Adjust for even spacing
           }}
         >
           {displayedImages.map((image, idx) => (

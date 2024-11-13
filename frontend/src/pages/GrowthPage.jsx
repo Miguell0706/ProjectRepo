@@ -20,7 +20,6 @@ const GrowthPage = () => {
   };
   //==========THIS CODE UPDATES THE PHOTO OBJECT IN THE BACKEND WHEN IT GETS CHANGED IN MEASUREMENTS LIST ===================//
   const onUpdateMeasurement = async (updatedMeasurement) => {
-    console.log("Updating measurement:", updatedMeasurement);
     try {
       const response = await fetch(`/api/photos/${updatedMeasurement._id}`, {
         method: "PUT",
@@ -39,6 +38,7 @@ const GrowthPage = () => {
     } catch (error) {
       console.error("Error updating measurement:", error);
     }
+    fetchPhotos();
   };
   // Fetch photos when the component mounts
   useEffect(() => {
@@ -54,6 +54,7 @@ const GrowthPage = () => {
       <MeasurementsList
         measurements={measurements}
         onUpdateMeasurement={onUpdateMeasurement}
+        fetchPhotos={fetchPhotos}
       />
     </div>
   );

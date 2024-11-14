@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import MeasurementsSidebar from "../components/MeasurementsSidebar";
-import MeasurementsList from "../components/MeasurementsList";
-import GiraffeContainer from "../components/GiraffeContainer";
+import MeasurementsSidebar from "../components/GrowthPageComponents/MeasurementsSidebar";
+import MeasurementsList from "../components/GrowthPageComponents/MeasurementsList";
+import GiraffeContainer from "../components/GrowthPageComponents/GiraffeContainer";
 import "../styles/growthpage.css";
 const GrowthPage = () => {
   const [measurements, setMeasurements] = useState([]);

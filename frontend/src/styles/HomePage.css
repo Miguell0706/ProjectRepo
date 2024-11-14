@@ -1,0 +1,138 @@
+/*=================================== Navbar.css ===========================*/
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--primary-tan);
+  color: white;
+  padding: 6px;
+}
+
+.group-logo {
+  height: 65px;
+  width: 60px;
+  margin-left: 40px;
+}
+
+.navbar__links {
+  display: flex;
+  gap: 20px;
+}
+
+.navbar__links a {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar__toggle {
+  width: 30px;
+  height: 35px;
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+  align-items: center;
+  margin-top: 25px;
+  gap: 5px;
+}
+.navbar__toggle:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+.navbar__toggle span {
+  display: block;
+  width: 25px;
+  height: 2px;
+  background-color: white;
+  border-radius: 4px;
+  transition: all 0.5s ease;
+}
+.navbar__toggle.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.navbar__toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar__toggle.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+.navbar__links {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.navbar__links--open {
+  display: flex;
+}
+
+/* Mobile styling */
+@media (min-width: 768px) {
+  .navbar__links {
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+    position: revert;
+  }
+
+  .navbar__links a {
+    color: white;
+    text-decoration: none;
+  }
+
+  .navbar__toggle {
+    display: none;
+  }
+}
+/*===============================================HERO CSS==============================================/*
+/* Basic container styling */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 500px;
+  background-image: url("../assets/HomePageAssets/HeroImage.png"); /* Update path if needed */
+  background-position: center;
+  background-size: cover; /* Keeps the entire image visible */
+  background-repeat: no-repeat;
+  text-align: center;
+}
+
+.hero__content {
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.6
+  ); /* Semi-transparent background for readability */
+}
+
+.hero__content h1 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.hero__content p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.hero__button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+}

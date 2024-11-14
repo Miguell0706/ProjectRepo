@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import giraffe from "../assets/Giraffe.jpg"; // Adjust path if needed
+import giraffe from "../../assets/GrowthPageAssets/Giraffe.jpg";
 
 const GiraffeContainer = ({ measurements }) => {
   const [displayedImages, setDisplayedImages] = useState([]);
@@ -30,7 +30,7 @@ const GiraffeContainer = ({ measurements }) => {
   const handleMouseEnter = (measurement, index) => {
     setDisplayedImages(imageCache[measurement]);
     setDisplayPosition(index * 7); // Set display position to match hover zone position
-    console.log("here");
+
     setTimeout(() => {
       const images = document.querySelectorAll(".image-display img");
       images.forEach((img) => {

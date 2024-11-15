@@ -26,10 +26,10 @@ const Navbar = () => {
           Home
         </Link>
         <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
-          About
+          YourYouthBook
         </Link>
         <Link to="/services" onClick={() => setIsMobileMenuOpen(false)}>
-          Services
+          FAQ
         </Link>
         <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
           Contact

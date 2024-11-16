@@ -17,31 +17,72 @@
   width: 60px;
   margin-left: 40px;
 }
-
+.icon-picture-container {
+  display: flex;
+  gap: 13px;
+  margin-left: 200px;
+  color: #af6a13;
+}
+.icon-picture-container i {
+  font-size: 25px;
+  cursor: pointer;
+  transition: 500ms;
+}
+.icon-picture-container i:hover {
+  color: white;
+}
+.friend-request-container,
+.message-request-container,
+.notification-container {
+  position: relative;
+}
+.friend-request-list,
+.message-request-list,
+.notification-list {
+  position: absolute;
+  background-color: white;
+  color: black;
+  padding: 20px;
+  border-radius: 10px;
+  left: -100px;
+  width: 200px;
+  margin-right: 20px;
+  transition: 500ms;
+}
+.friend-request-list.show,
+.message-request-list.show,
+.notification-list.show {
+  opacity: 1;
+  visibility: visible;
+  transition: 500ms;
+}
 .navbar__links {
   font-size: 14px;
   font-weight: 600;
   background-color: #f2f8fd;
   justify-content: center;
-  display: none;
   flex-direction: column;
   position: absolute;
   top: 60px;
   right: 0;
   width: 90%;
-  height: 0px;
-  transition: 250ms ease-in-out;
+  overflow: hidden; /* Ensure content is hidden when height is 0 */
+  max-height: 0;
+  transition: 1s;
 }
+
 .navbar__links--open {
-  display: flex;
-  height: auto;
+  max-height: 500px; /* Set a large enough max-height to fit content */
+  transition: 1s;
 }
 
 .navbar__links a {
   color: black;
   text-decoration: none;
   display: flex;
-  padding: 15px;
+  padding: 11px;
+  align-items: center;
+  justify-content: space-between;
 }
 .navbar__links a:not(:last-child) {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Black color with 50% opacity */
@@ -82,7 +123,10 @@
 .navbar__toggle.open span:nth-child(3) {
   transform: rotate(-45deg) translate(5px, -5px);
 }
-
+.link-plus {
+  color: rgb(110, 109, 109);
+  font-size: 1.4rem;
+}
 @media (min-width: 768px) {
   .navbar__links {
     display: flex;

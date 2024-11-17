@@ -79,8 +79,8 @@ const Navbar = () => {
           <div className="notification-count"></div>
           {isMessagesVisible && (
             <div className="message-request-list">
-              <h2>Message Requests</h2>
-              <p>You have no pending messages</p>
+              <h2>Messages</h2>
+              <p>Sorry, no messages were found</p>
             </div>
           )}
         </div>

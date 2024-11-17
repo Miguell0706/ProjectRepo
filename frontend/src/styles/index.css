@@ -8,6 +8,10 @@
   margin: 0;
   padding: 0;
 }
+@font-face {
+  font-family: "Roboto-regular";
+  src: url(../fonts/Roboto-Regular.ttf) format("truetype");
+}
 body {
   background-color: rgb(255, 255, 255);
   position: relative;
@@ -15,7 +19,11 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto-regular", sans-serif;
+  line-height: 28px;
+  color: #646464;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 .icofont {
   font-family: "IcoFont" !important;

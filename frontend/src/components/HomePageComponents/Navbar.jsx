@@ -4,41 +4,54 @@ import grouplogo from "../../assets/HomePageAssets/GroupLogo.png";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isFriendsVisible, setIsFriendsVisible] = useState(false);
-  const [isMessagesVisible, setIsMessagesVisible] = useState(false);
-  const [isNotificationsVisible, setIsNotificationsVisible] = useState(false);
 
   // Refs to track the elements
   const menuRef = useRef(null);
+
+  const [visibility, setVisibility] = useState({
+    friends: false,
+    messages: false,
+    notifications: false,
+  });
   const friendsRef = useRef(null);
   const messagesRef = useRef(null);
   const notificationsRef = useRef(null);
-
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen((prev) => !prev);
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
-
-  const toggleFriendsNotifs = () => {
-    setIsFriendsVisible((prev) => !prev);
-    friendsRef.current.scrollIntoView({ behavior: "smooth" });
+  const toggleVisibility = (type) => {
+    setVisibility((prev) => ({
+      ...prev,
+      [type]: !prev[type],
+    }));
   };
-
-  const toggleMessageNotifs = () => {
-    setIsMessagesVisible((prev) => !prev);
-    messagesRef.current.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const toggleNotificationsNotifs = () => {
-    setIsNotificationsVisible((prev) => !prev);
-    notificationsRef.current.scrollIntoView({ behavior: "smooth" });
-  };
-
   // Close all menus if the user clicks outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      setIsFriendsVisible(false);
-      setIsMessagesVisible(false);
-      setIsNotificationsVisible(false);
+      // Close menus only if the click is outside their containers and toggle buttons
+      if (
+        friendsRef.current &&
+        !friendsRef.current.contains(event.target) &&
+        !event.target.classList.contains("icofont-users-alt-4")
+      ) {
+        setVisibility((prev) => ({ ...prev, friends: false }));
+      }
+
+      if (
+        messagesRef.current &&
+        !messagesRef.current.contains(event.target) &&
+        !event.target.classList.contains("icofont-speech-comments")
+      ) {
+        setVisibility((prev) => ({ ...prev, messages: false }));
+      }
+
+      if (
+        notificationsRef.current &&
+        !notificationsRef.current.contains(event.target) &&
+        !event.target.classList.contains("icofont-notification")
+      ) {
+        setVisibility((prev) => ({ ...prev, notifications: false }));
+      }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
@@ -62,43 +75,66 @@ const Navbar = () => {
       <div className="icon-picture-container">
         {/* Friend Requests */}
         <div className="friend-request-container">
-          <i className="icofont-users-alt-4" onClick={toggleFriendsNotifs}></i>
+          <i
+            className="icofont-users-alt-4"
+            onClick={() => toggleVisibility("friends")}
+          ></i>
           <div className="notification-count"></div>
-          {isFriendsVisible && (
-            <div ref={friendsRef} className="friend-request-list show">
-              <h2>Friend Requests</h2>
-              <p>You have no pending friend requests</p>
-            </div>
-          )}
+          <div
+            ref={friendsRef}
+            className={`friend-request-list ${
+              visibility.friends ? "open" : ""
+            }`}
+          >
+            <h2>Friend Requests</h2>
+            <p>You have no pending friend requests</p>
+          </div>
         </div>
 
         {/* Message Requests */}
         <div className="message-request-container">
           <i
             className="icofont-speech-comments"
-            onClick={toggleMessageNotifs}
+            onClick={() => toggleVisibility("messages")}
           ></i>
           <div className="notification-count"></div>
-          {isMessagesVisible && (
-            <div ref={messagesRef} className="message-request-list show">
-              <h2>Messages</h2>
-              <p>Sorry, no messages were found</p>
-            </div>
-          )}
+          <div
+            ref={messagesRef}
+            className={`message-request-list ${
+              visibility.messages ? "open" : ""
+            }`}
+          >
+            <h2>Messages</h2>
+            <p>Sorry, no messages were found</p>
+          </div>
         </div>
 
         {/* Notifications */}
         <div className="notification-container">
           <i
             className="icofont-notification"
-            onClick={toggleNotificationsNotifs}
+            onClick={() => toggleVisibility("notifications")}
           ></i>
           <div className="notification-count"></div>
-          {isNotificationsVisible && (
-            <div ref={notificationsRef} className="notification-list show">
-              <p>Sorry, no notifications were found.</p>
-            </div>
-          )}
+
+          <div
+            ref={notificationsRef}
+            className={`notification-list ${
+              visibility.notifications ? "open" : ""
+            }`}
+          >
+            <p>Sorry, no notifications were found.</p>
+          </div>
+        </div>
+        {/* Blue line divider  */}
+        <div className="blue-line-navbar"></div>
+        {/* Profile Picture */}
+        <div className="profile-picture-container">
+          <img
+            src="https://via.placeholder.com/30x30"
+            className="profile-picture-navbar"
+            alt="Profile Picture"
+          />
         </div>
       </div>
 

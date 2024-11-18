@@ -13,18 +13,19 @@
 }
 
 .group-logo {
-  height: 65px;
-  width: 60px;
-  margin-left: 40px;
+  height: 45px;
+  width: 40px;
+  margin-left: 20px;
 }
 .icon-picture-container {
   display: flex;
   gap: 13px;
   margin-left: 200px;
+  align-items: center;
   color: #af6a13;
 }
 .icon-picture-container i {
-  font-size: 25px;
+  font-size: 30px;
   cursor: pointer;
   transition: 500ms;
 }
@@ -42,18 +43,27 @@
   position: absolute;
   background-color: white;
   color: black;
-  padding: 20px;
+  padding: 12px;
   border-radius: 10px;
-  right: -85px;
+  right: -70px;
   width: min(400px, 50vw);
-  margin-top: 15px;
+  margin-top: 20px;
   transition: 500ms;
   text-align: left;
-  display: none;
+  display: flex;
   flex-direction: column;
   opacity: 0;
   visibility: hidden;
   z-index: 2;
+  font-size: 16px;
+}
+.friend-request-list.open,
+.message-request-list.open,
+.notification-list.open {
+  opacity: 1;
+  visibility: visible;
+  transition: 500ms;
+  transform: translateY(-10px);
 }
 .message-request-container h2,
 .friend-request-container h2 {
@@ -75,14 +85,11 @@
   border-right: 8px solid transparent;
   border-bottom: 10px solid white;
 }
-.friend-request-list.show,
-.message-request-list.show,
-.notification-list.show {
-  opacity: 1;
-  display: flex;
-  visibility: visible;
-  transition: 500ms;
-  transform: translate(-10px);
+.blue-line-navbar {
+  width: 2px;
+  margin-inline: -5px;
+  height: 25px;
+  background-color: #6699ba;
 }
 .navbar__links {
   font-size: 14px;
@@ -96,12 +103,12 @@
   width: 90%;
   overflow: hidden; /* Ensure content is hidden when height is 0 */
   max-height: 0;
-  transition: 0.7s;
+  transition: 700ms;
 }
 
 .navbar__links.open {
   max-height: 500px; /* Set a large enough max-height to fit content */
-  transition: 0.7s;
+  transition: 700ms ease-in-out;
 }
 
 .navbar__links a {

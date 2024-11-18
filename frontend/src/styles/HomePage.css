@@ -44,12 +44,16 @@
   color: black;
   padding: 20px;
   border-radius: 10px;
-  left: -100px;
-  width: 200px;
-  margin-right: 20px;
-  margin-top: 10px;
+  right: -85px;
+  width: min(400px, 50vw);
+  margin-top: 15px;
   transition: 500ms;
   text-align: left;
+  display: none;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 2;
 }
 .message-request-container h2,
 .friend-request-container h2 {
@@ -75,8 +79,10 @@
 .message-request-list.show,
 .notification-list.show {
   opacity: 1;
+  display: flex;
   visibility: visible;
   transition: 500ms;
+  transform: translate(-10px);
 }
 .navbar__links {
   font-size: 14px;
@@ -90,12 +96,12 @@
   width: 90%;
   overflow: hidden; /* Ensure content is hidden when height is 0 */
   max-height: 0;
-  transition: 1s;
+  transition: 0.7s;
 }
 
-.navbar__links--open {
+.navbar__links.open {
   max-height: 500px; /* Set a large enough max-height to fit content */
-  transition: 1s;
+  transition: 0.7s;
 }
 
 .navbar__links a {

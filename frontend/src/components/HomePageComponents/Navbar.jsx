@@ -15,25 +15,27 @@ const Navbar = () => {
   const notificationsRef = useRef(null);
 
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
+    setIsMobileMenuOpen((prev) => !prev);
   };
 
   const toggleFriendsNotifs = () => {
     setIsFriendsVisible((prev) => !prev);
+    friendsRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
   const toggleMessageNotifs = () => {
     setIsMessagesVisible((prev) => !prev);
+    messagesRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
   const toggleNotificationsNotifs = () => {
     setIsNotificationsVisible((prev) => !prev);
+    notificationsRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
   // Close all menus if the user clicks outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      setIsMobileMenuOpen(false);
       setIsFriendsVisible(false);
       setIsMessagesVisible(false);
       setIsNotificationsVisible(false);
@@ -48,7 +50,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="navbar" ref={menuRef}>
+    <nav className="navbar">
       {/* Logo Section */}
       <div className="navbar__logo">
         <Link to="/">
@@ -59,11 +61,11 @@ const Navbar = () => {
       {/* Notification Sections */}
       <div className="icon-picture-container">
         {/* Friend Requests */}
-        <div className="friend-request-container" ref={friendsRef}>
+        <div className="friend-request-container">
           <i className="icofont-users-alt-4" onClick={toggleFriendsNotifs}></i>
           <div className="notification-count"></div>
           {isFriendsVisible && (
-            <div className="friend-request-list">
+            <div ref={friendsRef} className="friend-request-list show">
               <h2>Friend Requests</h2>
               <p>You have no pending friend requests</p>
             </div>
@@ -71,14 +73,14 @@ const Navbar = () => {
         </div>
 
         {/* Message Requests */}
-        <div className="message-request-container" ref={messagesRef}>
+        <div className="message-request-container">
           <i
             className="icofont-speech-comments"
             onClick={toggleMessageNotifs}
           ></i>
           <div className="notification-count"></div>
           {isMessagesVisible && (
-            <div className="message-request-list">
+            <div ref={messagesRef} className="message-request-list show">
               <h2>Messages</h2>
               <p>Sorry, no messages were found</p>
             </div>
@@ -86,14 +88,14 @@ const Navbar = () => {
         </div>
 
         {/* Notifications */}
-        <div className="notification-container" ref={notificationsRef}>
+        <div className="notification-container">
           <i
             className="icofont-notification"
             onClick={toggleNotificationsNotifs}
           ></i>
           <div className="notification-count"></div>
           {isNotificationsVisible && (
-            <div className="notification-list">
+            <div ref={notificationsRef} className="notification-list show">
               <p>Sorry, no notifications were found.</p>
             </div>
           )}
@@ -103,9 +105,8 @@ const Navbar = () => {
       {/* Mobile Menu Links */}
       <div>
         <div
-          className={`navbar__links ${
-            isMobileMenuOpen ? "navbar__links--open" : ""
-          }`}
+          ref={menuRef}
+          className={`navbar__links ${isMobileMenuOpen ? "open" : ""}`}
         >
           <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>
             Home

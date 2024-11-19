@@ -22,7 +22,7 @@
   gap: 13px;
   margin-left: 200px;
   align-items: center;
-  color: #af6a13;
+  color: var(--secondary-tan);
 }
 .icon-picture-container i {
   font-size: 30px;
@@ -54,7 +54,7 @@
   flex-direction: column;
   opacity: 0;
   visibility: hidden;
-  z-index: 2;
+  z-index: 10;
   font-size: 16px;
 }
 .friend-request-list.open,
@@ -91,6 +91,22 @@
   height: 25px;
   background-color: #6699ba;
 }
+.profile-picture-navbar {
+  margin-top: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  object-fit: cover;
+  object-position: center;
+  transition: 500ms;
+  background-color: var(--primary-tan);
+  margin-right: 10px;
+}
+.profile-picture-navbar:hover {
+  transform: scale(1.1);
+  transition: 500ms;
+}
 .navbar__links {
   font-size: 14px;
   font-weight: 600;
@@ -104,6 +120,7 @@
   overflow: hidden; /* Ensure content is hidden when height is 0 */
   max-height: 0;
   transition: 700ms;
+  z-index: 5;
 }
 
 .navbar__links.open {
@@ -182,46 +199,94 @@
 /*===============================================HERO CSS==============================================/*
 /* Basic container styling */
 .hero {
+  position: relative; /* Required for the pseudo-element */
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;
+  justify-content: space-between;
   flex-direction: column;
   width: 100%;
   height: 500px;
   background-image: url("../assets/HomePageAssets/HeroImage.png"); /* Update path if needed */
   background-position: center;
-  background-size: cover; /* Keeps the entire image visible */
+  background-size: cover;
   background-repeat: no-repeat;
   text-align: center;
+  color: var(--secondary-tan);
 }
 
-.hero__content {
-  background-color: rgba(
-    0,
-    0,
-    0,
-    0.6
-  ); /* Semi-transparent background for readability */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2); /* Adjust opacity for desired darkness */
+  z-index: 1; /* Places it below content but above the image */
+}
+
+.hero * {
+  position: relative; /* Ensures content appears above the overlay */
+  z-index: 2;
 }
 
 .hero__content h1 {
-  font-size: 3rem;
-  margin-bottom: 15px;
+  position: relative;
+  font-size: 1.8rem;
+  font-weight: 700;
+  width: 100%;
+  height: 100%;
+  margin-top: 20px;
+  margin-right: 20px;
+  letter-spacing: 1.1px;
 }
 
 .hero__content p {
   font-size: 1.2rem;
   margin-bottom: 20px;
 }
-
 .hero__button {
-  padding: 10px 20px;
+  position: relative;
+  padding: 15px 30px;
   font-size: 1rem;
+  font-weight: 700;
   border: none;
-  background-color: #333;
-  color: #fff;
+  width: 200px;
+  background-color: transparent;
+  color: var(--secondary-tan);
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 30px;
+  border: 2px solid var(--secondary-tan);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden; /* Ensures the stretching arrow doesn't go outside the button */
+}
+
+.hero__arrow {
+  position: absolute;
+  right: 10px;
+  color: var(--secondary-tan);
+  background-color: var(--secondary-tan);
+  height: 40px;
+  border-radius: 30px;
+  width: 40px;
+  transition: all 500ms ease-in-out;
+}
+
+.hero__arrow path {
+  color: var(--secondary-tan);
+  fill: var(--primary-tan);
+  transform: translate(10px, 15px);
+  transition: all 490ms ease-in-out;
+}
+
+.hero__button:hover .hero__arrow {
+  width: 92%; /* Stretch the background to fill the button */
+}
+
+.hero__button:hover .hero__arrow path {
+  transform: translate(146px, 15px);
 }
 
 /*==========================================ABOUT================================================*/

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import grouplogo from "../../assets/HomePageAssets/GroupLogo.png";
+import profilepicture from "../../assets/HomePageAssets/profilepicture.png";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -12,10 +13,13 @@ const Navbar = () => {
     friends: false,
     messages: false,
     notifications: false,
+    profileMenu: false,
   });
   const friendsRef = useRef(null);
   const messagesRef = useRef(null);
   const notificationsRef = useRef(null);
+  const profileMenuRef = useRef(null);
+
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
@@ -51,6 +55,14 @@ const Navbar = () => {
         !event.target.classList.contains("icofont-notification")
       ) {
         setVisibility((prev) => ({ ...prev, notifications: false }));
+      }
+
+      if (
+        profileMenuRef.current &&
+        !profileMenuRef.current.contains(event.target) &&
+        !event.target.classList.contains("icofont-user")
+      ) {
+        setVisibility((prev) => ({ ...prev, profileMenu: false }));
       }
     };
 
@@ -131,43 +143,65 @@ const Navbar = () => {
         {/* Profile Picture */}
         <div className="profile-picture-container">
           <img
-            src="https://via.placeholder.com/30x30"
+            src={profilepicture}
             className="profile-picture-navbar"
-            alt="Profile Picture"
+            onClick={() => toggleVisibility("profileMenu")}
           />
+          <div
+            ref={profileMenuRef}
+            className={`profile-menu ${visibility.profileMenu ? "open" : ""}`}
+          >
+            <ul className="profile-menu-content">
+              <li>
+                <i className="icofont-user-suited"></i>
+                <p>Profile</p>
+              </li>
+              <li>
+                <i className="icofont-gear"></i>
+                <p>Settings</p>
+              </li>
+              <li>
+                <i className="icofont-users-alt-2"></i>
+                <p>Groups</p>
+              </li>
+              <li>
+                <i className="icofont-power"></i>
+                <p>Logout</p>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
+        {/* Mobile Menu Links */}
+        <div>
+          <div
+            ref={menuRef}
+            className={`navbar__links ${isMobileMenuOpen ? "open" : ""}`}
+          >
+            <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>
+              Home
+            </Link>
+            <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
+              YourYouthBook <span className="link-plus">+</span>
+            </Link>
+            <Link to="/services" onClick={() => setIsMobileMenuOpen(false)}>
+              FAQ
+            </Link>
+            <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+              Contact
+            </Link>
+          </div>
+        </div>
 
-      {/* Mobile Menu Links */}
-      <div>
-        <div
-          ref={menuRef}
-          className={`navbar__links ${isMobileMenuOpen ? "open" : ""}`}
+        {/* Mobile Menu Toggle Button */}
+        <button
+          className={`navbar__toggle ${isMobileMenuOpen ? "open" : ""}`}
+          onClick={toggleMobileMenu}
         >
-          <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>
-            Home
-          </Link>
-          <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
-            YourYouthBook <span className="link-plus">+</span>
-          </Link>
-          <Link to="/services" onClick={() => setIsMobileMenuOpen(false)}>
-            FAQ
-          </Link>
-          <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-            Contact
-          </Link>
-        </div>
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
-
-      {/* Mobile Menu Toggle Button */}
-      <button
-        className={`navbar__toggle ${isMobileMenuOpen ? "open" : ""}`}
-        onClick={toggleMobileMenu}
-      >
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
     </nav>
   );
 };

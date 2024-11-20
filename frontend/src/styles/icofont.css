@@ -13,6 +13,13 @@
   src: url("../fonts/icofont.woff2") format("woff2"),
     url("../fonts/icofont.woff") format("woff");
 }
+@font-face {
+  font-family: "IcoFont";
+  font-weight: normal;
+  font-style: "Regular";
+  src: url("../fonts/icofont2.woff2") format("woff2"),
+    url("../fonts/icofont2.woff") format("woff");
+}
 
 [class^="icofont-"],
 [class*=" icofont-"] {
@@ -42,7 +49,21 @@
 .icofont-speech-comments:before {
   content: "\eff2";
 }
+.icofont-user-suited:before {
+  content: "\ed04";
+}
 
+.icofont-gear:before {
+  content: "\ef3a";
+}
+
+.icofont-users-alt-2:before {
+  content: "\ed07";
+}
+
+.icofont-power:before {
+  content: "\efc4";
+}
 [class^="icofont-"].icofont-duotone,
 [class*=" icofont-"].icofont-duotone {
   position: relative;

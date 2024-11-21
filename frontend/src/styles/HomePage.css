@@ -163,7 +163,7 @@
 }
 
 .navbar__links.open {
-  max-height: 500px; /* Set a large enough max-height to fit content */
+  max-height: 1200px; /* Set a large enough max-height to fit content */
   transition: 700ms ease-in-out;
 }
 
@@ -171,9 +171,14 @@
   color: black;
   text-decoration: none;
   display: flex;
-  padding: 11px;
+  font-size: 13px;
+  padding: 8px;
+  padding-left: 15px;
   align-items: center;
   justify-content: space-between;
+}
+.navbar__links a:hover {
+  background-color: rgba(255, 255, 255, 1);
 }
 .navbar__links a:not(:last-child) {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Black color with 50% opacity */
@@ -217,6 +222,19 @@
 .link-plus {
   color: rgb(110, 109, 109);
   font-size: 1.4rem;
+}
+.youthbook-dropdown {
+  height: 0;
+  transition: 500ms ease-in-out;
+  overflow: hidden;
+}
+.youthbook-dropdown.open {
+  height: 710px;
+  transition: 500ms ease-in-out;
+}
+.youthbook-dropdown a {
+  padding-left: 30px;
+  font-size: 12.5px;
 }
 @media (min-width: 768px) {
   .navbar__links {

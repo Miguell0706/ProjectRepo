@@ -5,6 +5,7 @@ import profilepicture from "../../assets/HomePageAssets/profilepicture.png";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isYouthBookOpen, setIsYouthBookOpen] = useState(false);
 
   // Refs to track the elements
   const menuRef = useRef(null);
@@ -22,6 +23,9 @@ const Navbar = () => {
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+  const toggleYouthBook = () => {
+    setIsYouthBookOpen(!isYouthBookOpen);
   };
   const toggleVisibility = (type) => {
     setVisibility((prev) => ({
@@ -60,7 +64,7 @@ const Navbar = () => {
       if (
         profileMenuRef.current &&
         !profileMenuRef.current.contains(event.target) &&
-        !event.target.classList.contains("icofont-user")
+        !event.target.classList.contains("profile-picture-navbar")
       ) {
         setVisibility((prev) => ({ ...prev, profileMenu: false }));
       }
@@ -180,9 +184,61 @@ const Navbar = () => {
             <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>
               Home
             </Link>
-            <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
+            <Link onClick={toggleYouthBook}>
               YourYouthBook <span className="link-plus">+</span>
             </Link>
+            <div
+              className={`youthbook-dropdown ${isYouthBookOpen ? "open" : ""}`}
+            >
+              <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
+                Pregnancy
+              </Link>
+              <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
+                Announce Pregnancy
+              </Link>
+              <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
+                Gender reveal
+              </Link>
+              <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
+                Birth announcement
+              </Link>
+              <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
+                Maternity care
+              </Link>
+              <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
+                Birthdays
+              </Link>
+              <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
+                Family Tree
+              </Link>
+              <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
+                Scribbles
+              </Link>
+              <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
+                Photo/Audio/Video
+              </Link>
+              <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
+                Growth Ladder
+              </Link>
+              <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
+                Video messages
+              </Link>
+              <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
+                School report
+              </Link>
+              <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
+                Diplomas
+              </Link>
+              <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
+                School teachers
+              </Link>
+              <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
+                Friends book
+              </Link>
+              <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
+                Tooth Fairy
+              </Link>
+            </div>
             <Link to="/services" onClick={() => setIsMobileMenuOpen(false)}>
               FAQ
             </Link>

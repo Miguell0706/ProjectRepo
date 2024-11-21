@@ -86,7 +86,73 @@ const Navbar = () => {
           <img src={grouplogo} className="group-logo" alt="Group Logo" />
         </Link>
       </div>
-
+      {/* Navlinks wide screen */}
+      <div>
+        <ul className="navbar__links__wide">
+          <li>
+            <Link>Home</Link>
+          </li>
+          <li className="youthbook-link-wide">
+            <Link>YouthBook</Link>
+            <div className="youthbook-dropdown-wide">
+              <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
+                Pregnancy
+              </Link>
+              <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
+                Announce Pregnancy
+              </Link>
+              <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
+                Gender reveal
+              </Link>
+              <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
+                Birth announcement
+              </Link>
+              <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
+                Maternity care
+              </Link>
+              <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
+                Birthdays
+              </Link>
+              <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
+                Family Tree
+              </Link>
+              <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
+                Scribbles
+              </Link>
+              <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
+                Photo/Audio/Video
+              </Link>
+              <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
+                Growth Ladder
+              </Link>
+              <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
+                Video messages
+              </Link>
+              <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
+                School report
+              </Link>
+              <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
+                Diplomas
+              </Link>
+              <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
+                School teachers
+              </Link>
+              <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
+                Friends book
+              </Link>
+              <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
+                Tooth Fairy
+              </Link>
+            </div>
+          </li>
+          <li>
+            <Link>FAQ</Link>
+          </li>
+          <li>
+            <Link>Contact</Link>
+          </li>
+        </ul>
+      </div>
       {/* Notification Sections */}
       <div className="icon-picture-container">
         {/* Friend Requests */}

@@ -236,21 +236,80 @@
   padding-left: 30px;
   font-size: 12.5px;
 }
-@media (min-width: 768px) {
+.navbar__links__wide {
+  display: none;
+}
+@media (min-width: 850px) {
   .navbar__links {
-    display: flex;
-    gap: 20px;
-    flex-direction: row;
-    position: revert;
+    display: none;
   }
-
-  .navbar__links a {
-    color: white;
-    text-decoration: none;
-  }
-
   .navbar__toggle {
     display: none;
+  }
+  .profile-menu {
+    margin-right: 35px;
+  }
+  .profile-menu::after {
+    right: 50px;
+  }
+  .navbar__links__wide {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+  }
+  .navbar__links__wide a {
+    color: var(--secondary-tan);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 900;
+  }
+  .navbar__links__wide a:hover {
+    color: white;
+    opacity: 0.7;
+  }
+  .youthbook-link-wide {
+    position: relative;
+  }
+  .youthbook-link-wide::after {
+    content: "";
+    position: absolute;
+    top: 55%;
+    right: -12px; /* Position the arrow beside the link */
+    transform: translateY(-50%); /* Center it vertically */
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 8px solid var(--secondary-tan); /* Arrow color */
+  }
+  .youthbook-link-wide:hover::after {
+    border-top-color: white;
+  }
+  .youthbook-dropdown-wide {
+    position: absolute;
+    top: 140%;
+    left: -60px;
+    width: 400px;
+    background-color: var(--primary-tan);
+    padding: 20px;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 10px; /* Space between items */
+    border-radius: 10px;
+    visibility: hidden;
+    opacity: 0;
+    transition: 300ms ease-in-out;
+  }
+
+  .youthbook-dropdown-wide a {
+    font-size: 13px;
+    text-align: left;
+    padding-left: 15px;
+  }
+  .youthbook-link-wide:hover .youthbook-dropdown-wide {
+    opacity: 1;
+    visibility: visible;
+    transition: 300ms ease-in-out;
+    transform: translateY(-10px);
   }
 }
 /*===============================================HERO CSS==============================================/*

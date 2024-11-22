@@ -217,6 +217,7 @@ const Navbar = () => {
             className="profile-picture-navbar"
             onClick={() => toggleVisibility("profileMenu")}
           />
+          <h2>Sample Name</h2>
           <div
             ref={profileMenuRef}
             className={`profile-menu ${visibility.profileMenu ? "open" : ""}`}

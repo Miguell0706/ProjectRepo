@@ -89,6 +89,9 @@
   border-right: 8px solid transparent;
   border-bottom: 10px solid white;
 }
+.profile-picture-container h2 {
+  display: none;
+}
 .profile-menu {
   width: auto;
 }
@@ -117,6 +120,7 @@
 }
 .profile-menu-content li i {
   margin-right: 10px;
+  margin-top: 4px;
   font-size: 18px;
   transition: 10ms;
 }
@@ -240,6 +244,13 @@
   display: none;
 }
 @media (min-width: 850px) {
+  .profile-picture-container h2 {
+    display: inline-block;
+    position: relative;
+    bottom: 10px;
+    font-size: 15px;
+    color: var(--secondary-tan);
+  }
   .navbar__links {
     display: none;
   }
@@ -371,6 +382,7 @@
   letter-spacing: 1.1px;
   font-weight: 700;
   margin-bottom: auto;
+  color: var(--secondary-tan);
 }
 .hero__button {
   text-shadow: 0px 0.5px 0px rgb(0, 0, 0);
@@ -441,6 +453,59 @@
   text-align: center;
   padding: 30px;
   background-color: var(--primary-tan);
+}
+.about h2 {
+  font-size: 1.6rem;
+  color: var(--secondary-tan);
+  margin-block: 2vh;
+}
+.about p {
+  font-size: 1.1rem;
+  text-align: center;
+  padding-inline: 20px;
+}
+.about ul {
+  margin-top: 3vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  list-style: none;
+}
+.about h3 {
+  margin-top: 2vh;
+  margin-bottom: 0.5vh;
+  font-size: 1.2rem;
+  color: var(--secondary-tan);
+  padding: 10px;
+}
+.about ul p {
+  text-align: center;
+}
+.join-us {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  text-align: center;
+  padding-block: 20px;
+}
+.hero__button.join {
+  width: 200px;
+  position: relative;
+  margin-bottom: 0px;
+  font-size: 17px;
+  color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgb(255, 255, 255, 0.6);
+  background: linear-gradient(110deg, var(--darker-tan), var(--secondary-tan));
+}
+.hero__button.join svg {
+  color: var(--secondary-tan);
+}
+.hero_button.join svg path {
+  color: var(--secondary-tan);
+  fill: var(--primary-tan);
+  width: 200px !important;
 }
 /*==========================================FOOTER================================================*/
 .footer {

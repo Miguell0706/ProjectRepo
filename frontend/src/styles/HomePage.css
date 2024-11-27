@@ -10,6 +10,9 @@
   background-color: var(--primary-tan);
   color: white;
   padding: 6px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .group-logo {
@@ -435,7 +438,8 @@
   }
   .hero__content h1 {
     text-align: left;
-    margin-bottom: 20px;
+    margin-bottom: 3vw;
+    font-size: 2rem;
   }
   .hero__content {
     margin-right: 10vw;
@@ -451,13 +455,18 @@
   flex-direction: column;
   width: 100%;
   text-align: center;
-  padding: 30px;
+  padding: 10px;
   background-color: var(--primary-tan);
 }
 .about h2 {
   font-size: 1.6rem;
   color: var(--secondary-tan);
   margin-block: 2vh;
+  font-size: 1.4rem;
+  letter-spacing: 0.5px;
+  padding-left: 10px;
+  font-weight: 900;
+  font-family: "Nunito";
 }
 .about p {
   font-size: 1.1rem;
@@ -477,10 +486,16 @@
   font-size: 1.2rem;
   color: var(--secondary-tan);
   padding: 10px;
+  font-size: 1.4rem;
+  letter-spacing: 0.5px;
+  padding-left: 10px;
+  font-weight: 900;
+  font-family: "Nunito";
 }
 .about ul p {
   text-align: center;
 }
+
 .join-us {
   display: flex;
   align-items: center;
@@ -507,6 +522,95 @@
   fill: var(--primary-tan);
   width: 200px !important;
 }
+.feature-description li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3%;
+}
+.feature-image-container {
+  min-width: 100px;
+  border-radius: 50%;
+  height: 100px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 300ms ease-in-out;
+}
+.feature-image-container i {
+  color: var(--secondary-tan);
+  font-size: 2.5rem;
+}
+.feature-image-container:hover {
+  background-color: var(--primary-tan);
+}
+.feature-image-container ~ div h3 {
+  transition: 300ms ease-in-out;
+}
+.feature-image-container:hover ~ div h3 {
+  color: var(--primary-tan); /* Apply the desired style */
+  transition: 300ms ease-in-out;
+}
+.feature-description {
+  text-align: left;
+}
+.feature-description p {
+  padding-inline: 0px;
+  padding-left: 10px;
+  font-size: 1rem;
+  text-align: left !important;
+}
+.join-us {
+  font-family: "Nunito";
+  font-size: 1.4rem;
+  color: var(--secondary-tan);
+  background-color: var(--primary-tan);
+  padding: max(15px, 1vw);
+  display: flex;
+  flex-wrap: wrap;
+  font-weight: 900;
+}
+.join-us p {
+  font-size: 1.2rem;
+  color: var(--secondary-tan);
+  background-color: var(--primary-tan);
+  padding: 3vw;
+  display: flex;
+  flex-wrap: wrap;
+  font-weight: 400;
+}
+@media screen and (min-width: 850px) {
+  .about {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .feature-image-container {
+    min-width: 140px;
+    border-radius: 50%;
+    height: 140px;
+  }
+  .feature-image-container i {
+    font-size: 3rem;
+  }
+  .who-are-we {
+    margin: 10px;
+    margin-top: 5vw;
+    width: 120vw;
+    max-width: 600px;
+  }
+  .feature-description {
+    margin-top: 3vw;
+    margin-left: 2vw;
+  }
+  .feature-description ul li:nth-child(even) {
+    margin-left: 8cqh; /* Adjust margin as needed */
+  }
+  .who-are-we li {
+    margin-block: 20px;
+  }
+}
+
 /*==========================================FOOTER================================================*/
 .footer {
   background-color: var(--primary-tan);

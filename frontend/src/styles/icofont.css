@@ -20,6 +20,13 @@
   src: url("../fonts/icofont2.woff2") format("woff2"),
     url("../fonts/icofont2.woff") format("woff");
 }
+@font-face {
+  font-family: "IcoFont";
+  font-weight: normal;
+  font-style: "Regular";
+  src: url("../fonts/icofont3.woff2") format("woff2"),
+    url("../fonts/icofont3.woff") format("woff");
+}
 
 [class^="icofont-"],
 [class*=" icofont-"] {
@@ -53,6 +60,21 @@
   content: "\ed04";
 }
 
+.icofont-question-circle:before {
+  content: "\efca";
+}
+
+.icofont-meetme:before {
+  content: "\ed52";
+}
+
+.icofont-ui-lock:before {
+  content: "\ec61";
+}
+
+.icofont-edit-alt:before {
+  content: "\eded";
+}
 .icofont-gear:before {
   content: "\ef3a";
 }

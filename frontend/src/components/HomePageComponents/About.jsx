@@ -1,6 +1,23 @@
-import React from "react";
-
+import React, { useEffect } from "react";
 const About = () => {
+  useEffect(() => {
+    const button = document.querySelector(".hero__button.join");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            button.classList.add("animate"); // Add class to trigger animation
+            observer.disconnect(); // Stop observing after animation is triggered
+          }
+        });
+      },
+      { threshold: 0.5 } // Trigger when 50% of the button is visible
+    );
+
+    if (button) observer.observe(button);
+  }, []);
+
   return (
     <>
       <section className="about">

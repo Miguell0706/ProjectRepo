@@ -27,6 +27,13 @@
   src: url("../fonts/icofont3.woff2") format("woff2"),
     url("../fonts/icofont3.woff") format("woff");
 }
+@font-face {
+  font-family: "IcoFont";
+  font-weight: normal;
+  font-style: "Regular";
+  src: url("../fonts/icofont4.woff2") format("woff2"),
+    url("../fonts/icofont4.woff") format("woff");
+}
 
 [class^="icofont-"],
 [class*=" icofont-"] {
@@ -44,7 +51,9 @@
   -webkit-font-feature-settings: "liga";
   -webkit-font-smoothing: antialiased;
 }
-
+.icofont-bubble-up:before {
+  content: "\ea66";
+}
 .icofont-notification:before {
   content: "\efac";
 }

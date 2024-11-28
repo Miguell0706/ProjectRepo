@@ -1,3 +1,15 @@
+/* Define the animation */
+@keyframes slideInAndFade {
+  0% {
+    opacity: 0;
+    transform: translateX(400px); /* Slide up effect */
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
 .home-container {
   background-color: var(--primary-tan);
   overflow-x: hidden;
@@ -513,6 +525,10 @@
   color: rgba(255, 255, 255, 0.9);
   border: 1px solid rgb(255, 255, 255, 0.6);
   background: linear-gradient(110deg, var(--darker-tan), var(--secondary-tan));
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.hero__button.join.animate {
+  animation: slideInAndFade 0.8s ease forwards;
 }
 .hero__button.join svg {
   color: var(--secondary-tan);

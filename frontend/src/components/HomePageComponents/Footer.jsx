@@ -16,10 +16,10 @@ const Footer = () => {
         <img src={SingleLogo} alt="Single Logo" />
       </div>
       <div className="footer-info-container">
-        <div className="footer-image-container">
+        <div className="footer-info-image-container">
           <img src={GroupLogo} alt="Single Logo" />
 
-          <p></p>
+          <p>The ultimate gift for your child!</p>
         </div>
         <div className="important-links">
           <h3>Important links</h3>
@@ -44,9 +44,6 @@ const Footer = () => {
       </div>
       <div className="copyright-container">
         <p>Copyright © YourYoutuhbook.com</p>
-        <div className="copyright-arrow-container">
-          <i className="icofont-bubble-up"></i>
-        </div>
       </div>
     </section>
   );

@@ -15,6 +15,13 @@ const Footer = () => {
         <img src={SingleLogo3} alt="Single Logo3" />
         <img src={SingleLogo} alt="Single Logo" />
       </div>
+      <div class="mask-container">
+        <div class="mask-box">
+          <div class="box-wrap">
+            <p>Main container</p>
+          </div>
+        </div>
+      </div>
       <div className="footer-info-container">
         <div className="footer-info-image-container">
           <img src={GroupLogo} alt="Single Logo" />

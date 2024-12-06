@@ -635,13 +635,16 @@
 
 .footer-image-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 20px;
+  gap: 4vw;
 }
 .footer-image-container img {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 12vw;
+}
+.footer-char-one {
+  transform: translate(0%, 10vw) rotate(-10deg);
 }
 .footer-info-image-container {
   display: flex;
@@ -743,7 +746,7 @@
 @media screen and (min-width: 850px) {
   .footer-info-container div {
     width: 25%;
-    transform: translateY(-6vw);
+    transform: translateY(-4vw);
   }
   .footer-info-container {
     align-items: flex-start;

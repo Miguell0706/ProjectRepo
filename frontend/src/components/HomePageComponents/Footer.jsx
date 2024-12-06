@@ -6,15 +6,6 @@ import GroupLogo from "../../assets/HomePageAssets/GroupLogo.png";
 const Footer = () => {
   return (
     <section className="footer">
-      <div className="footer-image-container">
-        <img src={SingleLogo} alt="Single Logo" />
-        <img src={SingleLogo2} alt="Single Logo2" />
-        <img src={SingleLogo3} alt="Single Logo3" />
-        <img src={SingleLogo} alt="Single Logo" />
-        <img src={SingleLogo2} alt="Single Logo2" />
-        <img src={SingleLogo3} alt="Single Logo3" />
-        <img src={SingleLogo} alt="Single Logo" />
-      </div>
       <div class="mask-container">
         <div class="mask-box">
           <div class="box-wrap">

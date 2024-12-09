@@ -1,0 +1,184 @@
+.login-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: var(--primary-tan);
+}
+.login-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: aliceblue;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  width: 90vw;
+  max-width: 600px;
+  height: 500px;
+  gap: 20px;
+}
+.login-form-container h1 {
+  font-size: 1.5rem;
+  color: var(--secondary-tan);
+  margin-bottom: 20px;
+  font-weight: 900;
+  font-family: "Nunito";
+  padding-top: 2vw;
+  text-shadow: 0px 0.5px 0px rgb(0, 0, 0);
+  position: relative;
+}
+.login-form-container h1::before {
+  content: "";
+  height: 4px;
+  width: 20px;
+  bottom: -10px;
+  background-color: var(--primary-tan);
+  position: absolute;
+}
+.login-form-container h1::after {
+  content: "";
+  height: 4px;
+  width: 250px;
+  bottom: -10px;
+  left: 35px;
+  background-color: var(--primary-tan);
+  position: absolute;
+}
+.login-form-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.login-form-container form label {
+  font-size: 1rem;
+  color: var(--secondary-tan);
+  font-weight: 600;
+}
+.login-form-container form input {
+  width: 80vw;
+  max-width: 550px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 1.1px;
+  background-color: var(--primary-tan);
+}
+.login-form-container div {
+  width: 100%;
+  max-width: 550px;
+}
+/* Hide the default checkbox */
+input[type="checkbox"] {
+  display: none;
+}
+
+.checkbox-container label {
+  margin-left: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.checkbox-container {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+}
+/* Create a custom checkbox using ::before */
+.checkbox-container input[type="checkbox"] + label::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #000;
+  border-radius: 4px; /* For rounded corners, remove for square */
+  margin-right: 8px;
+  background-color: #fff;
+  transform: translateY(4px);
+}
+
+/* When the checkbox is checked, change the custom checkbox's appearance */
+.checkbox-container input[type="checkbox"]:checked + label::before {
+  background-color: var(--primary-tan); /* Green color when checked */
+  border-color: var(--secondary-tan);
+}
+
+.checkbox-container input[type="checkbox"]:checked + label::before {
+  content: "✔"; /* Add a checkmark */
+  color: #fff;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  font-weight: bold;
+  text-shadow: 0px 0.5px 0px rgb(0, 0, 0);
+  background-color: var(--primary-tan);
+  border-color: var(--secondary-tan);
+  transform: translateY(1px);
+}
+
+.login-form-container form button {
+  width: 80vw;
+  max-width: 550px;
+
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 1.1px;
+  background-color: var(--primary-tan);
+  cursor: pointer;
+  transition: 300ms ease-in-out;
+  text-shadow: 0px 0.5px 0px rgb(0, 0, 0);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+}
+.login-form-container form button:hover {
+  background-color: var(--secondary-tan);
+}
+.login-form-container form button:active {
+  transform: scale(0.95);
+}
+.forgot-password-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 20px;
+}
+.forgot-password-container a {
+  font-size: 16px;
+  color: var(--secondary-tan);
+  text-shadow: 0px 0.5px 0px rgb(0, 0, 0);
+  text-decoration: none;
+}
+.forgot-password-container a:hover {
+  color: var(--primary-tan);
+}
+.forgot-password-container a:active {
+  transform: scale(0.95);
+}
+
+.forgot-password-container i {
+  font-size: 16px;
+  color: var(--secondary-tan);
+  text-shadow: 0px 0.5px 0px rgb(0, 0, 0);
+  cursor: pointer;
+  transition: 300ms ease-in-out;
+}
+.forgot-password-container i:hover {
+  color: var(--primary-tan);
+}
+.forgot-password-container i:active {
+  transform: scale(0.95);
+}
+.sign-in-tab,
+.register-tab {
+  display: none;
+}

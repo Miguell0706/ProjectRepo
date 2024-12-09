@@ -224,20 +224,28 @@ const Navbar = () => {
           >
             <ul className="profile-menu-content">
               <li>
-                <i className="icofont-user-suited"></i>
-                <p>Profile</p>
+                <Link>
+                  <i className="icofont-user-suited"></i>
+                  <p>Profile</p>
+                </Link>
               </li>
               <li>
-                <i className="icofont-gear"></i>
-                <p>Settings</p>
+                <Link>
+                  <i className="icofont-gear"></i>
+                  <p>Settings</p>
+                </Link>
               </li>
               <li>
-                <i className="icofont-users-alt-2"></i>
-                <p>Groups</p>
+                <Link>
+                  <i className="icofont-users-alt-2"></i>
+                  <p>Groups</p>
+                </Link>
               </li>
               <li>
-                <i className="icofont-power"></i>
-                <p>Logout</p>
+                <Link to="/Login">
+                  <i className="icofont-power"></i>
+                  <p>Logout</p>
+                </Link>
               </li>
             </ul>
           </div>

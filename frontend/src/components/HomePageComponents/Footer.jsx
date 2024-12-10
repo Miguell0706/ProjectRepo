@@ -16,7 +16,6 @@ const Footer = () => {
       <div className="footer-info-container">
         <div className="footer-info-image-container">
           <img src={GroupLogo} alt="Single Logo" />
-
           <p>The ultimate gift for your child!</p>
         </div>
         <div className="important-links">

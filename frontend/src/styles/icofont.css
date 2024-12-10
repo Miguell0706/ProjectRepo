@@ -34,6 +34,13 @@
   src: url("../fonts/icofont4.woff2") format("woff2"),
     url("../fonts/icofont4.woff") format("woff");
 }
+@font-face {
+  font-family: "IcoFont";
+  font-weight: normal;
+  font-style: "Regular";
+  src: url("../fonts/icofont5.woff2") format("woff2"),
+    url("../fonts/icofont5.woff") format("woff");
+}
 
 [class^="icofont-"],
 [class*=" icofont-"] {
@@ -50,6 +57,21 @@
   /* Better Font Rendering =========== */
   -webkit-font-feature-settings: "liga";
   -webkit-font-smoothing: antialiased;
+}
+.icofont-duotone.icofont-eye-open:before {
+  content: "\13b1b";
+}
+.icofont-duotone.icofont-eye-open:after {
+  content: "\13b1a";
+}
+.icofont-duotone.icofont-eye-close:before {
+  content: "\13b19";
+}
+.icofont-duotone.icofont-eye-close:after {
+  content: "\13b18";
+}
+.icofont-download:before {
+  content: "\ef08";
 }
 .icofont-bubble-up:before {
   content: "\ea66";

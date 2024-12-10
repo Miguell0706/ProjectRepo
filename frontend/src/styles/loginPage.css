@@ -240,3 +240,22 @@ input[type="checkbox"] {
   justify-content: center;
   gap: 5px;
 }
+.password-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  position: relative;
+  margin-top: 10px;
+}
+.toggle-password {
+  all: unset !important;
+  position: absolute !important;
+  top: 0px;
+  right: 10px !important;
+  cursor: pointer;
+  transition: 300ms ease-in-out;
+}
+.toggle-password i {
+  font-size: 1.3rem;
+}

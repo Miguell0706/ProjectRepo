@@ -96,7 +96,7 @@
 .profile-menu::after {
   content: "";
   position: absolute;
-  top: -10px;
+  top: -8px;
   right: 78px;
   width: 0;
   height: 0;
@@ -180,13 +180,12 @@
   transition: 500ms;
 }
 .navbar__links {
-  font-size: 14px;
   font-weight: 600;
   background-color: #f2f8fd;
   justify-content: center;
   flex-direction: column;
   position: absolute;
-  top: 60px;
+  top: 40px;
   right: 0;
   width: 90%;
   overflow: hidden; /* Ensure content is hidden when height is 0 */
@@ -196,7 +195,8 @@
 }
 
 .navbar__links.open {
-  max-height: 1200px; /* Set a large enough max-height to fit content */
+  height: auto;
+  max-height: 90vh; /* Set a large enough max-height to fit content */
   transition: 700ms ease-in-out;
 }
 
@@ -204,8 +204,8 @@
   color: black;
   text-decoration: none;
   display: flex;
-  font-size: 13px;
-  padding: 8px;
+  font-size: 14px;
+  padding: 0.6vh;
   padding-left: 15px;
   align-items: center;
   justify-content: space-between;
@@ -262,12 +262,13 @@
   overflow: hidden;
 }
 .youthbook-dropdown.open {
-  height: 710px;
+  height: 65vh;
+  overflow-y: scroll;
   transition: 500ms ease-in-out;
 }
 .youthbook-dropdown a {
   padding-left: 30px;
-  font-size: 12.5px;
+  font-size: 12px;
 }
 .navbar__links__wide {
   display: none;
@@ -335,6 +336,8 @@
     grid-template-columns: 1fr 1fr; /* Two equal columns */
     gap: 10px; /* Space between items */
     border-radius: 10px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
     visibility: hidden;
     opacity: 0;
     transition: 300ms ease-in-out;
@@ -653,6 +656,7 @@
   align-items: center;
   gap: 4vw;
 }
+
 .footer-image-container img {
   width: 120px;
   height: 12vw;
@@ -725,6 +729,9 @@
 .footer-info-container div p:hover {
   color: var(--darker-gold);
   transition: 250ms ease-in-out;
+}
+.footer-info-image-container p:hover {
+  all: unset !important;
 }
 .copyright-container {
   background-color: #f2f8fd;

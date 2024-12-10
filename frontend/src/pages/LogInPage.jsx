@@ -1,31 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/loginPage.css";
+import Login from "../components/LoginPageComponents/Login";
+import Register from "../components/LoginPageComponents/Register";
 
 const LogInPage = () => {
+  const [showLogInModal, setShowLogInModal] = useState(true);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
+
   return (
     <div className="login-page-container">
       <image></image>
       <div className="login-form-container">
-        <h1>Log in to YourYouthBook</h1>
         <form>
-          <label htmlFor="email">Username</label>
-          <input type="username" id="username" name="username" required />
-          <label htmlFor="password">Password</label>
-          <input type="password" id="password" name="password" required />
-          <div className="checkbox-container">
-            <input type="checkbox" id="rememberMe" />
-            <label htmlFor="rememberMe">Remember Me</label>
-          </div>
-          <button type="submit">Log In</button>
-          <div className="forgot-password-container">
-            <a href="#">Lost your password?</a>
-            <i className="icofont-long-arrow-left">Back to Home</i>
-          </div>
-          <div className="sign-in-tab">
+          {/* Modals */}
+          <Login showLogInModal={showLogInModal} />
+          <Register showRegisterModal={showRegisterModal} />
+
+          {/* Tabs */}
+          <div
+            className={`sign-in-tab ${showLogInModal ? "active" : ""}`}
+            onClick={() => {
+              setShowLogInModal(true);
+              setShowRegisterModal(false);
+            }}
+          >
             <i className="icofont-long-arrow-left">Sign in</i>
           </div>
-          <div className="register-tab">
-            <i class="icofont-long-arrow-left">Registration</i>
+          <div
+            className={`register-tab ${showRegisterModal ? "active" : ""}`}
+            onClick={() => {
+              setShowLogInModal(false);
+              setShowRegisterModal(true);
+            }}
+          >
+            <i className="icofont-long-arrow-left">Registration</i>
           </div>
         </form>
       </div>

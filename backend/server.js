@@ -1,8 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
-import AWS from "aws-sdk";
 import multer from "multer";
 import multerS3 from "multer-s3";
+import { S3 } from "@aws-sdk/client-s3";
 import { connectDB } from "./config/db.js";
 import userRoutes from "./routes/user.route.js";
 import photoRoutes from "./routes/photo.route.js";
@@ -15,19 +15,20 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const __dirname = path.resolve();
 
-// Configure AWS SDK
-const s3 = new AWS.S3({
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+const s3 = new S3({
   region: process.env.AWS_REGION,
+  credentials: {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  },
 });
-
 // Configure multer with S3 storage
 const upload = multer({
+  limits: { fileSize: 10 * 1024 * 1024 }, // Limit to 10 MB
   storage: multerS3({
     s3: s3,
     bucket: process.env.AWS_BUCKET_NAME,
-    acl: "public-read", // allows public access to images
+
     key: (req, file, cb) => {
       cb(null, `uploads/${Date.now()}-${file.originalname}`); // path within S3 bucket
     },

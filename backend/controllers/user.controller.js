@@ -1,3 +1,4 @@
+import bcrypt from "bcryptjs";
 import mongoose from "mongoose";
 import User from "../models/User.model.js";
 
@@ -57,6 +58,54 @@ export const deleteUser = async (req, res) => {
         .json({ success: false, message: "user not found" });
     }
     res.status(200).json({ success: true, data: deletedUser });
+  } catch (error) {
+    console.error(`Error: ${error.message}`);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+};
+import bcrypt from "bcryptjs";
+import mongoose from "mongoose";
+import User from "../models/User.model.js";
+
+// Registration Controller
+export const registerUser = async (req, res) => {
+  const { name, image, username, password } = req.body;
+
+  // Validate required fields
+  if (!name || !username || !password) {
+    return res.status(400).json({
+      success: false,
+      message: "Name, username, and password are required",
+    });
+  }
+
+  try {
+    // Check if the username already exists
+    const userExists = await User.findOne({ username });
+    if (userExists) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Username already exists" });
+    }
+
+    // Hash the password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    // Create a new user with optional image
+    const newUser = new User({
+      name,
+      image: image || "https://example.com/default-avatar.png", // Default image if not provided
+      username,
+      password: hashedPassword,
+    });
+
+    await newUser.save();
+    res.status(201).json({
+      success: true,
+      message: "User registered successfully",
+      data: { id: newUser._id, name: newUser.name, username: newUser.username },
+    });
   } catch (error) {
     console.error(`Error: ${error.message}`);
     res.status(500).json({ success: false, message: "Internal server error" });

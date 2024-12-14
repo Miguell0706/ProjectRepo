@@ -7,14 +7,31 @@ const LogInPage = () => {
   const [showLogInModal, setShowLogInModal] = useState(true);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
 
+  // Handle form submit
+  const handleLoginSubmit = async (formData) => {
+    // You can perform your login logic here
+    console.log("Login Data:", formData);
+  };
+
+  const handleRegisterSubmit = async (formData) => {
+    // You can perform your registration logic here
+    console.log("Register Data:", formData);
+  };
+
   return (
     <div className="login-page-container">
       <image></image>
       <div className="login-form-container">
         <form>
           {/* Modals */}
-          <Login showLogInModal={showLogInModal} />
-          <Register showRegisterModal={showRegisterModal} />
+          <Login
+            showLogInModal={showLogInModal}
+            handleSubmit={handleLoginSubmit} // Pass handleSubmit for login
+          />
+          <Register
+            showRegisterModal={showRegisterModal}
+            handleSubmit={handleRegisterSubmit} // Pass handleSubmit for register
+          />
 
           {/* Tabs */}
           <div

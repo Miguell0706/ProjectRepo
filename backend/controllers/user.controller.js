@@ -1,6 +1,5 @@
-import bcrypt from "bcryptjs";
 import mongoose from "mongoose";
-import User from "../models/User.model.js";
+import User from "../models/User.model.js"; // Import Photo model
 
 export const getUsers = async (req, res) => {
   try {
@@ -63,19 +62,15 @@ export const deleteUser = async (req, res) => {
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 };
-import bcrypt from "bcryptjs";
-import mongoose from "mongoose";
-import User from "../models/User.model.js";
 
-// Registration Controller
 export const registerUser = async (req, res) => {
-  const { name, image, username, password } = req.body;
-
+  const { username, password } = req.body;
+  console.log(req.body);
   // Validate required fields
-  if (!name || !username || !password) {
+  if (!username || !password) {
     return res.status(400).json({
       success: false,
-      message: "Name, username, and password are required",
+      message: "Username and password are required",
     });
   }
 
@@ -88,26 +83,28 @@ export const registerUser = async (req, res) => {
         .json({ success: false, message: "Username already exists" });
     }
 
-    // Hash the password
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
-
-    // Create a new user with optional image
+    // Create a new user
     const newUser = new User({
-      name,
-      image: image || "https://example.com/default-avatar.png", // Default image if not provided
       username,
-      password: hashedPassword,
+      password, // Let the User model handle password hashing in pre-save hook
     });
 
     await newUser.save();
+
+    // Respond with success
     res.status(201).json({
       success: true,
       message: "User registered successfully",
-      data: { id: newUser._id, name: newUser.name, username: newUser.username },
+      data: {
+        id: newUser._id,
+        username: newUser.username,
+      },
     });
   } catch (error) {
     console.error(`Error: ${error.message}`);
-    res.status(500).json({ success: false, message: "Internal server error" });
+    res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
   }
 };

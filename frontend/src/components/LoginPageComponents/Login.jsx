@@ -8,7 +8,7 @@ const Login = ({ showLogInModal }) => {
   }
 
   return (
-    <div className="login-form">
+    <form className="login-form">
       <h1>Log in to YourYouthBook</h1>
       <label htmlFor="email">Username</label>
       <input type="username" id="username" name="username" required />
@@ -25,7 +25,7 @@ const Login = ({ showLogInModal }) => {
           <i className="icofont-long-arrow-left">Back to Home</i>
         </Link>
       </div>
-    </div>
+    </form>
   );
 };
 

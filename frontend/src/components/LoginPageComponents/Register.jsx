@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 
-const Register = ({ showRegisterModal, handleSubmit }) => {
+const Register = ({ showRegisterModal }) => {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -9,6 +10,8 @@ const Register = ({ showRegisterModal, handleSubmit }) => {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState([]);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Toggle password visibility
   const togglePasswordVisibility = () => {
@@ -33,53 +36,61 @@ const Register = ({ showRegisterModal, handleSubmit }) => {
       newErrors.push("Passwords do not match.");
 
     setErrors(newErrors);
-
     return newErrors.length === 0; // Return true if no errors
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrors([]);
+    setSuccessMessage("");
 
-    if (!validateForm()) return; // Stop submission if form is invalid
+    if (!validateForm()) {
+      return;
+    }
 
+    setIsSubmitting(true);
     try {
-      // Send formData to backend API
-      const response = await fetch("/api/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          username: formData.username,
-          password: formData.password,
-        }),
+      const response = await axios.post(`/api/users/register`, {
+        username: formData.username,
+        password: formData.password,
       });
 
-      const result = await response.json();
-
-      if (!response.ok) {
-        setErrors([result.message || "Registration failed."]);
-      } else {
-        alert("Registration successful!");
-      }
+      setSuccessMessage("Registration successful! You can now log in.");
+      setFormData({
+        username: "",
+        password: "",
+        confirmPassword: "",
+      });
     } catch (error) {
-      console.error("Error during registration:", error);
-      setErrors(["An unexpected error occurred. Please try again later."]);
+      // Handle Axios error response
+      const errorMessage =
+        error.response?.data?.message || "An error occurred while registering.";
+      setErrors([errorMessage]);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   if (!showRegisterModal) {
     return null; // Do not render anything if the modal shouldn't be shown
   }
+
   return (
-    <div className="register-form">
+    <form className="register-form" onSubmit={handleSubmit}>
       <h1>Register to YourYouthBook</h1>
       {errors.length > 0 && (
-        <p className="error-message">
+        <div className="error-message">
           {errors.map((err, index) => (
-            <span key={index}>{err}</span>
+            <p key={index}>{err}</p>
           ))}
-        </p>
+        </div>
       )}
+      {successMessage && (
+        <div className="success-message">
+          <p>{successMessage}</p>
+        </div>
+      )}
+
       {/* Username Field */}
       <label htmlFor="username">Username</label>
       <input
@@ -89,6 +100,7 @@ const Register = ({ showRegisterModal, handleSubmit }) => {
         value={formData.username}
         onChange={handleInputChange}
         required
+        disabled={isSubmitting}
       />
 
       {/* Password Field */}
@@ -101,6 +113,7 @@ const Register = ({ showRegisterModal, handleSubmit }) => {
           value={formData.password}
           onChange={handleInputChange}
           required
+          disabled={isSubmitting}
         />
         <button
           type="button"
@@ -125,6 +138,7 @@ const Register = ({ showRegisterModal, handleSubmit }) => {
           value={formData.confirmPassword}
           onChange={handleInputChange}
           required
+          disabled={isSubmitting}
         />
         <button
           type="button"
@@ -139,13 +153,15 @@ const Register = ({ showRegisterModal, handleSubmit }) => {
         </button>
       </div>
 
-      <button type="submit">Register</button>
+      <button type="submit" disabled={isSubmitting}>
+        {isSubmitting ? "Registering..." : "Register"}
+      </button>
       <div className="forgot-password-container">
         <Link to="/">
           <i className="icofont-long-arrow-left">Back to Home</i>
         </Link>
       </div>
-    </div>
+    </form>
   );
 };
 

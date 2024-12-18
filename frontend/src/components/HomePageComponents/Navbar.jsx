@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import grouplogo from "../../assets/HomePageAssets/GroupLogo.png";
 import profilepicture from "../../assets/HomePageAssets/profilepicture.png";
 
-const Navbar = () => {
+const Navbar = ({ user, setUser }) => {
+  const navigate = useNavigate(); // Initialize navigate function
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isYouthBookOpen, setIsYouthBookOpen] = useState(false);
 
@@ -78,6 +80,11 @@ const Navbar = () => {
     };
   }, []);
 
+  const handleLogout = () => {
+    localStorage.removeItem("authToken"); // Remove token
+    setUser(null); // Clear user state
+    navigate("/Login");
+  };
   return (
     <nav className="navbar">
       {/* Logo Section */}
@@ -209,7 +216,7 @@ const Navbar = () => {
             className="profile-picture-navbar"
             onClick={() => toggleVisibility("profileMenu")}
           />
-          <h2>Sample Name</h2>
+          <h2>Welcome, {user ? user.data.username : "Guest"}</h2>
           <div
             ref={profileMenuRef}
             className={`profile-menu ${visibility.profileMenu ? "open" : ""}`}
@@ -234,10 +241,10 @@ const Navbar = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/Login">
+                <a onClick={handleLogout}>
                   <i className="icofont-power"></i>
                   <p>Logout</p>
-                </Link>
+                </a>
               </li>
             </ul>
           </div>

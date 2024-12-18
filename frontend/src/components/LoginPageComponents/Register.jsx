@@ -28,12 +28,29 @@ const Register = ({ showRegisterModal }) => {
   const validateForm = () => {
     const newErrors = [];
 
-    if (!formData.username.trim()) newErrors.push("Username is required.");
-    if (!formData.password) newErrors.push("Password is required.");
-    if (formData.password.length < 6)
-      newErrors.push("Password must be at least 6 characters.");
-    if (formData.password !== formData.confirmPassword)
+    if (!formData.username.trim()) {
+      newErrors.push("Username is required.");
+    } else if (!/^[a-zA-Z0-9]+$/.test(formData.username)) {
+      newErrors.push("Username can only contain letters and numbers.");
+    } else if (formData.username.length < 3 || formData.username.length > 15) {
+      newErrors.push("Username must be between 3 and 15 characters.");
+    }
+
+    if (!formData.password) {
+      newErrors.push("Password is required.");
+    } else {
+      const passwordRegex =
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&_])[A-Za-z\d@$!%*?&_]{6,}$/;
+      if (!passwordRegex.test(formData.password)) {
+        newErrors.push(
+          "Password must contain at least 6 characters, including uppercase, lowercase, a number, and a special character."
+        );
+      }
+    }
+
+    if (formData.password !== formData.confirmPassword) {
       newErrors.push("Passwords do not match.");
+    }
 
     setErrors(newErrors);
     return newErrors.length === 0; // Return true if no errors
